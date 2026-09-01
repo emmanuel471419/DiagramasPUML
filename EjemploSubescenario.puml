@@ -1,0 +1,17 @@
+@startuml subescenarios_gym
+left to right direction
+actor Socio
+rectangle "Sistema de Gimnasio" {
+    usecase "Reservar Clase de Spinning" as UC1
+    usecase "Verificar Membresía Activa" as UC2
+    usecase "Rechazar por Adeudo" as UC3
+    usecase "Confirmar Lugar" as UC4
+}
+actor Recepcionista
+Socio --> UC1
+UC1 --> UC2 : <<include>>
+UC3 --> UC1 : <<extend>> [pago pendiente]
+UC4 --> UC1 : <<extend>> [acceso autorizado]
+UC1 --> Recepcionista
+
+@enduml
